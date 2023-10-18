@@ -116,10 +116,14 @@ void Queue::dequeue(Element &item)
 ***************************************************************************/
 void Queue::view()
 {
+    cout << "HEAD -> ";
+    
     for(int i = head; i != tail; i = (i +1) % QUEUE_SIZE)
     {
-       cout << queueArray[i] << endl;
+       cout << queueArray[i] << " -> ";
     }
+
+    cout << "TAIL" << endl;
 }
 
 /******************************************************
