@@ -17,19 +17,20 @@ typedef Element *ElementPtr;
 class Queue 
 {
     public:
-        explicit Queue (int size);           // replace ... with required arguments
+        explicit Queue (int size = 3);           // replace ... with required arguments
         Queue ( Queue &other);              // reuse enqueue & dequeue
         ~Queue();                           // reuse dequque
         void enqueue (const Element item);  // inserts a new element to the tail of the queue
         void dequeue (Element &item);       // removes an existing element from the dead of the queue
         void view();                        // reuse enqueue & dequeue
-        bool isEmpty() const;
-        bool isFull() const;
+        
 
     private:
-        int QUEUE_SIZE;                     // requries initialization
+        const u_short QUEUE_SIZE;                     // requries initialization
         ElementPtr queueArray;
         short head, tail;
+        bool isEmpty() const;
+        bool isFull() const;
         
 };
 
