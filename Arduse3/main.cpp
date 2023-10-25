@@ -14,37 +14,41 @@
 using namespace std;
 
 int main() {
-    Queue myQueue(5); // Create a queue with a size of 5
+    Queue q1, q2(5); // Create a queue with a size of 5
 
     // Enqueue elements
-    myQueue.enqueue(10);
-    myQueue.enqueue(20);
-    myQueue.enqueue(30);
-    myQueue.enqueue(40);
-    myQueue.enqueue(50);
-    myQueue.enqueue(60);
+    q1.enqueue(10);
+    q1.enqueue(20);
+    q1.enqueue(30);
+    q2.enqueue(99);
+    q2.enqueue(100);
 
     //View queue
-    myQueue.view();
+    q1.view();
+    q2.view();
     cout << endl;
 
     // Dequeue an element
     Element dequeuedElement;
-    myQueue.dequeue(dequeuedElement);
+    q1.dequeue(dequeuedElement);
+    q1.dequeue(dequeuedElement);
+    q1.dequeue(dequeuedElement);
+    q1.dequeue(dequeuedElement);
+
 
 
     // View the contents of the queue (customize as needed)
-    myQueue.view();
+    q1.view();
 
     // Check if the queue is empty
-    if (myQueue.isEmpty()) {
-        cout << "Queue is empty." << endl;
-    }
+    // if (q1.isEmpty()) {
+    //     cout << "Queue is empty." << endl;
+    // }
 
-    // Check if the queue is full
-    if (myQueue.isFull()) {
-        cout << "Queue is full." << endl;
-    }
+    // // Check if the queue is full
+    // if (q1.isFull()) {
+    //     cout << "Queue is full." << endl;
+    // }
 
     return 0;
 }
