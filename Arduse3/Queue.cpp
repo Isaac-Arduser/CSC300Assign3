@@ -21,12 +21,14 @@ using namespace std;
 *** IN/OUT ARGS :   n/a                                                         ***
 *** RETURN      :   n/a                                                         ***
 ***********************************************************************************/
-Queue::Queue(int size)
+Queue::Queue(int size) : QUEUE_SIZE(size), head(-1), tail(-1)
 {
-    QUEUE_SIZE = size;
-    queueArray = new Element[size];
-    head = 0;
-    tail = 0;
+    queueArray = new (nothrow) Element[QUEUE_SIZE];
+    if (!queueArray)
+    { 
+        cout << " Memeory failed";
+        exit(1);
+    }
 }
 
 
@@ -39,12 +41,22 @@ Queue::Queue(int size)
 *** IN/OUT ARGS :   n/a                                                                 ***
 *** RETURN      :   n/a                                                                 ***
 *******************************************************************************************/
-Queue::Queue(Queue &other)
+Queue::Queue(Queue &other) : QUEUE_SIZE(other.QUEUE_SIZE), head(-1), tail(-1)
 {
-    QUEUE_SIZE = other.QUEUE_SIZE;
-    queueArray = new Element[other.QUEUE_SIZE];
-    head = other.head;
-    tail = other.tail;
+    queueArray = new Element[QUEUE_SIZE];
+    Queue tempQueue(QUEUE_SIZE);
+
+    for (short i = other.head; i != other.tail; i = (i + 1) % other.QUEUE_SIZE)
+    {
+        Element QueueElement = other.queueArray[i];
+        tempQueue.enqueue(QueueElement);
+    }
+    
+    for (short i = tempQueue.head; i != tempQueue.tail; i = (i + 1) % tempQueue.QUEUE_SIZE)
+    {
+        Element QueueElement = tempQueue.queueArray[i];
+        enqueue(QueueElement);
+    }
 }
 
 /**********************************************************************************
@@ -137,6 +149,7 @@ void Queue::view()
 *******************************************************/
 bool Queue::isEmpty() const
 {
+    
     return head == tail;
 }
 
